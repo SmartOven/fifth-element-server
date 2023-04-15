@@ -1,4 +1,4 @@
-package ru.fifthelementserver.traffic.transaction;
+package ru.fifthelementserver.traffic;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

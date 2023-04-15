@@ -1,4 +1,4 @@
-package ru.fifthelementserver.traffic.transaction;
+package ru.fifthelementserver.traffic;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
