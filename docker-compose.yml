@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  postgres-db:
+    image: postgres:latest
+    container_name: fifth-element-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: fifth-element-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+  grafana:
+    image: grafana/grafana:latest
+    container_name: fifth-element-grafana
+    restart: unless-stopped
+    depends_on:
+      - postgres-db
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_DATABASE_TYPE=postgres
+      - GF_DATABASE_HOST=postgres-db:5432
+      - GF_DATABASE_NAME=fifth-element-db
+      - GF_DATABASE_USER=admin
+      - GF_DATABASE_PASSWORD=12345
+      - GF_DATABASE_SSL_MODE=disable
