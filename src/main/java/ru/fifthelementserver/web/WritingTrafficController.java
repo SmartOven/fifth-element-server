@@ -1,7 +1,6 @@
 package ru.fifthelementserver.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,7 @@ public class WritingTrafficController {
     }
 
     @PostMapping("/networkTraffic")
-    public ResponseEntity<?> writeNetworkTrafficBatch(@RequestBody NetworkTraffic networkTraffic) {
-        return ResponseEntity.ok(networkTraffic.getTransactions().stream().map(transactionService::createTransaction));
+    public void writeNetworkTrafficBatch(@RequestBody NetworkTraffic networkTraffic) {
+        networkTraffic.getTransactions().forEach(transactionService::createTransaction);
     }
 }

@@ -12,6 +12,7 @@ services:
       - "5432:5432"
     volumes:
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./postgres:/var/lib/postgresql/data
   grafana:
     image: grafana/grafana:latest
     container_name: fifth-element-grafana
@@ -20,6 +21,8 @@ services:
       - postgres-db
     ports:
       - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
@@ -29,3 +32,5 @@ services:
       - GF_DATABASE_USER=admin
       - GF_DATABASE_PASSWORD=12345
       - GF_DATABASE_SSL_MODE=disable
+volumes:
+  grafana-data:
