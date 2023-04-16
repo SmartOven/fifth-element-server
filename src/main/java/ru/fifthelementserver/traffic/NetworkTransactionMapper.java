@@ -3,6 +3,7 @@ package ru.fifthelementserver.traffic;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 @Service
 public class NetworkTransactionMapper {
@@ -13,9 +14,9 @@ public class NetworkTransactionMapper {
                 null,
                 deviceInfo.getId(),
                 TransactionType.fromString(transactionDto.getTransaction_type()),
-                new Timestamp(transactionDto.getRequest_date()),
-                new Timestamp(transactionDto.getResponse_date()),
-                transactionDto.getDuration(),
+                transactionDto.getRequest_date() == null ? Timestamp.from(Instant.now()) : new Timestamp(transactionDto.getRequest_date()),
+                transactionDto.getResponse_date() == null ? Timestamp.from(Instant.now()) : new Timestamp(transactionDto.getResponse_date()),
+                transactionDto.getDuration() == null ? 0 : transactionDto.getDuration(),
                 transactionDto.getRequest_size() == null ? 0 : transactionDto.getRequest_size(),
                 transactionDto.getResponse_size() == null ? 0 : transactionDto.getResponse_size(),
                 deviceInfo.getModel(),
