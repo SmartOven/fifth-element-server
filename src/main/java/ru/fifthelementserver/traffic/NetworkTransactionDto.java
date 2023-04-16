@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NetworkTransactionDto {
+    private String threads;
     private String transaction_type;
     private String url;
     private String uri;

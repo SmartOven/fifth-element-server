@@ -22,6 +22,7 @@ public class NetworkTransactionMapper {
                 transactionDto.getDuration() == null ? 0 : transactionDto.getDuration(),
                 transactionDto.getRequest_size() == null ? 0 : transactionDto.getRequest_size(),
                 transactionDto.getResponse_size() == null ? 0 : transactionDto.getResponse_size(),
+                transactionDto.getThreads(),
                 deviceInfo.getModel(),
                 transactionDto.getResponse_code(),
                 transactionDto.getUrl(),
