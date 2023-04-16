@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.fifthelementserver.traffic.DeviceInfo;
 import ru.fifthelementserver.traffic.NetworkTraffic;
 import ru.fifthelementserver.traffic.NetworkTransactionDto;
 import ru.fifthelementserver.traffic.NetworkTransactionService;
@@ -21,9 +22,9 @@ public class WritingTrafficController {
 
     @PostMapping("/networkTraffic")
     public ResponseEntity<?> writeNetworkTrafficBatch(@RequestBody NetworkTraffic networkTraffic) {
-        String deviceModel = networkTraffic.getDevice_model();
+        DeviceInfo deviceInfo = networkTraffic.getDevice_info();
         for (NetworkTransactionDto transaction : networkTraffic.getTransactions()) {
-            transactionService.createTransaction(transaction, deviceModel);
+            transactionService.createTransaction(transaction, deviceInfo);
         }
         return ResponseEntity.ok("");
     }

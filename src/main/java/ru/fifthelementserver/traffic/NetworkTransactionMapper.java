@@ -7,17 +7,18 @@ import java.sql.Timestamp;
 @Service
 public class NetworkTransactionMapper {
     public NetworkTransaction fromDto(
-            NetworkTransactionDto transactionDto, String deviceModel
+            NetworkTransactionDto transactionDto, DeviceInfo deviceInfo
     ) {
         return new NetworkTransaction(
                 null,
+                deviceInfo.getId(),
                 TransactionType.fromString(transactionDto.getTransaction_type()),
                 new Timestamp(transactionDto.getRequest_date()),
                 new Timestamp(transactionDto.getResponse_date()),
                 transactionDto.getDuration(),
                 transactionDto.getRequest_size(),
                 transactionDto.getResponse_size(),
-                deviceModel,
+                deviceInfo.getModel(),
                 transactionDto.getResponse_code(),
                 transactionDto.getUrl(),
                 transactionDto.getUri(),

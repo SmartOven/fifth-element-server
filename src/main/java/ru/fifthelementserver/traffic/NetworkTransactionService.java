@@ -16,7 +16,7 @@ public class NetworkTransactionService {
         this.transactionMapper = transactionMapper;
     }
 
-    public NetworkTransaction createTransaction(NetworkTransactionDto transactionDto, String deviceModel) {
-        return transactionRepository.save(transactionMapper.fromDto(transactionDto, deviceModel));
+    public NetworkTransaction createTransaction(NetworkTransactionDto transactionDto, DeviceInfo deviceInfo) {
+        return transactionRepository.save(transactionMapper.fromDto(transactionDto, deviceInfo));
     }
 }
