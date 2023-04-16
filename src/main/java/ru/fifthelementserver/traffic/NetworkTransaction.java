@@ -40,7 +40,9 @@ public class NetworkTransaction {
     @Column(nullable = false)
     private Long response_size;
 
+    @Column(length = 2048)
     private String threads;
+
     private String device_model;
     private Integer response_code;
     private String url;
